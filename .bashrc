@@ -97,3 +97,10 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+
+# Custom stuff starts here
+
+export PYTHONDONTWRITEBYTECODE=1
+export EDITOR=vim
+
