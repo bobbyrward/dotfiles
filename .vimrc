@@ -20,6 +20,7 @@ call vundle#rc()
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-fugitive'
 Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'tpope/vim-surround'
 
 filetype plugin on
 filetype indent on
