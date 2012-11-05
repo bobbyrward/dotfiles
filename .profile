@@ -20,3 +20,7 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+
+PATH="$PATH:/opt/vagrant/bin/"
+
+source $HOME/.ssh-agent-start

@@ -38,29 +38,35 @@ nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 nmap <leader>Q :qall<cr>
 nmap <leader>j :NERDTreeToggle<cr>
-nmap <leader>e :e
+nmap <leader>e :e 
+
+nmap <leader>V :split<cr>
+nmap <leader>v :vsplit<cr>
 
 " Quick change file format
 nmap <leader>fd :se ff=dos<cr>
 nmap <leader>fu :se ff=unix<cr>
 
 " buffer shortcuts
-map <leader>bd :Bclose<cr>
-map <leader>bn :bn<cr>
-map <leader>bp :bp<cr>
+nmap <leader>bd :bd<cr>
+nmap <leader>bn :bn<cr>
+nmap <leader>bp :bp<cr>
 
 "Tab configuration
-map <leader>tn :tabnew %<cr>
-map <leader>te :tabedit 
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>` :tabprev<cr>
-map <leader><tab> :tabnext<cr>
+nmap <leader>tn :tabnew %<cr>
+nmap <leader>te :tabedit 
+nmap <leader>tc :tabclose<cr>
+nmap <leader>tm :tabmove 
+nmap <leader>` :tabprev<cr>
+nmap <leader><tab> :tabnext<cr>
+
+nmap <leader>ts :ConqueTermTab 
+nmap <leader>s :ConqueTerm 
 
 nnoremap <leader>T :CommandT<cr>
 
-map <leader>n :next<cr>
-map <leader>cd :cd %:p:h<cr>
+nmap <leader>n :next<cr>
+nmap <leader>cd :cd %:p:h<cr>
 
 try
   set switchbuf=usetab
@@ -159,6 +165,17 @@ set listchars=tab:≫-,trail:→
 set list
 
 """"""""""""""""""""""""""""""
+" => Conque
+""""""""""""""""""""""""""""""
+let g:ConqueTerm_PyVersion = 2
+let g:ConqueTerm_Color = 0
+let g:ConqueTerm_FastMode = 0
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_Syntax = 'python'
+let g:ConqueTerm_TERM = 'vt100'
+
+
+""""""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
 "Always hide the statusline
@@ -250,12 +267,20 @@ set wrap
 
 
 """"""""""""""""""""""""""""""
+" => NERDTree
+""""""""""""""""""""""""""""""
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.egg-info$']
+
+
+""""""""""""""""""""""""""""""
 " => Python
 """"""""""""""""""""""""""""""
 au FileType python set expandtab
 au FileType python set cindent
 au FileType python set formatoptions+=croq
 au FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+au FileType python set textwidth=80
+au FileType python set colorcolumn=+1
 
 
 

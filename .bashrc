@@ -100,7 +100,10 @@ fi
 
 
 # Custom stuff starts here
-
-export PYTHONDONTWRITEBYTECODE=1
 export EDITOR=vim
+export PYTONDONTWRITEBYTECODE=1
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENV_USE_DISTRIBUTE=true
+source /usr/local/bin/virtualenvwrapper.sh
 
+export GREP_OPTIONS="--exclude-dir=.svn -I"
