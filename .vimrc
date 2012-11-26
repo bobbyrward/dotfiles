@@ -105,10 +105,10 @@ endfunction
 let g:netrw_list_hide='^\.,.\(pyc\|pyo\|o\)$'
 
 " Colorcolumns
-if version >= 730
-  autocmd FileType * setlocal colorcolumn=0
-  autocmd FileType ruby,python,javascript,c,cpp,objc setlocal colorcolumn=79
-endif
+"if version >= 730
+  "autocmd FileType * setlocal colorcolumn=0
+  "autocmd FileType ruby,python,javascript,c,cpp,objc setlocal colorcolumn=79
+"endif
 
 " Set 7 lines to the curors - when moving vertical..
 set so=7
@@ -281,6 +281,18 @@ au FileType python set formatoptions+=croq
 au FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au FileType python set textwidth=80
 au FileType python set colorcolumn=+1
+
+
+
+""""""""""""""""""""""""""""""
+" => Ruby
+""""""""""""""""""""""""""""""
+au FileType ruby set expandtab
+au FileType ruby set cindent
+"au FileType ruby set formatoptions+=croq
+" au FileType ruby set cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+"au FileType ruby set textwidth=80
+"au FileType ruby set colorcolumn=+1
 
 
 
