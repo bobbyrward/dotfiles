@@ -105,5 +105,8 @@ export PYTONDONTWRITEBYTECODE=1
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENV_USE_DISTRIBUTE=true
 source /usr/local/bin/virtualenvwrapper.sh
+source $HOME/.rvm/scripts/rvm
 
 export GREP_OPTIONS="--exclude-dir=.svn -I"
+
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
