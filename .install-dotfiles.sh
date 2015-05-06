@@ -12,7 +12,9 @@ fi
 DOTFILES_DIR=~/.dotfiles
 
 if [ -d "$DOTFILES_DIR" ]; then
-	rm -rf $DOTFILES_DIR
+	pushd $DOTFILES_DIR
+	git pull
+	popd
 fi
 
 git clone https://github.com/bobbyrward/dotfiles.git $DOTFILES_DIR
