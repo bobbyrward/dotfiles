@@ -1,26 +1,29 @@
 set nocompatible
 
-call pathogen#infect()
-
-colorscheme wombat256
-set guifont=Consolas:h10:cANSI
-
-
 syntax enable
 
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+" Load vim-plug
+" Run :PlugInstall to install
+if empty(glob('~/.vim/autoload/plug.vim'))
+    execute '!mkdir -p ~/.vim/autoload'
+    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
 
-"Bundle 'gmarik/vundle'
+call plug#begin('~/.vim/plugged')
 
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-tbone'
+Plug 'tpope/vim-surround'
+Plug 'wincent/command-t'
+Plug 'chriskempson/base16-vim'
+Plug 'scrooloose/syntastic'
+Plug 'vim-scripts/django.vim'
+Plug 'wting/rust.vim'
 
-" NERDTree
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-fugitive'
-Bundle 'git://git.wincent.com/command-t.git'
-Bundle 'tpope/vim-surround'
+call plug#end()
 
 filetype plugin on
 filetype indent on
