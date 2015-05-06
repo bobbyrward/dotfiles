@@ -34,8 +34,17 @@ set encoding=utf8
 set ffs=unix,dos,mac
 set mouse=a
 
+set background=dark
+" colorscheme base16-mocha
+
+set guifont=Consolas:h10:cANSI
+
+
 let mapleader = "'"
 let g:mapleader = "'"
+
+nnoremap ; :
+vnoremap ; :
 
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
@@ -69,6 +78,8 @@ nmap <leader>s :ConqueTerm
 nnoremap <leader>T :CommandT<cr>
 
 nmap <leader>n :next<cr>
+nmap <leader>cn :cn<cr>
+nmap <leader>cp :cp<cr>
 nmap <leader>cd :cd %:p:h<cr>
 
 try
@@ -168,6 +179,11 @@ set listchars=tab:≫-,trail:→
 set list
 
 """"""""""""""""""""""""""""""
+" => CommandT
+""""""""""""""""""""""""""""""
+nmap <leader>d :CommandT<cr>
+
+""""""""""""""""""""""""""""""
 " => Conque
 """"""""""""""""""""""""""""""
 let g:ConqueTerm_PyVersion = 2
@@ -190,7 +206,7 @@ return curdir
 endfunction
 
 "Format the statusline
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+set statusline=\ %F%m%r%h\ %w\ \ %{fugitive#statusline()}\ \ Line:\ %l/%L:%c
 
 """"""""""""""""""""""""""""""
 " => Visual
@@ -282,8 +298,15 @@ au FileType python set expandtab
 au FileType python set cindent
 au FileType python set formatoptions+=croq
 au FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-au FileType python set textwidth=80
+au FileType python set textwidth=1024
 au FileType python set colorcolumn=+1
+
+
+
+""""""""""""""""""""""""""""""
+" => Rust
+""""""""""""""""""""""""""""""
+au FileType rust set expandtab
 
 
 
@@ -340,3 +363,5 @@ endfunction
 command -nargs=+ NMapToggle call NMapToggle(<f-args>)
 
 NMapToggle <leader>h hlsearch 
+
+
