@@ -41,7 +41,10 @@ export EDITOR=vim
 export PYTONDONTWRITEBYTECODE=1
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENV_USE_DISTRIBUTE=true
-source /usr/local/bin/virtualenvwrapper.sh
+
+if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
+	source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
