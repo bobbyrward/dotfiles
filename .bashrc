@@ -32,7 +32,7 @@ else
 
     if [ -f "$BREW_GIT_COMPLETION" ]; then
         source $BREW_GIT_COMPLETION
-    source
+    fi
 fi
 
 export TERM=xterm-256color
@@ -67,5 +67,3 @@ install_pip() {
 install_rust() {
     curl -s https://static.rust-lang.org/rustup.sh | sh
 }
-
-
