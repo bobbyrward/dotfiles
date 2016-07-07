@@ -63,6 +63,8 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\
 
 source $HOME/.git-prompt.sh
 
+alias sfix="export SSH_AUTH_SOCK=\$(find /tmp/ssh-* -user $USER -name agent\* -printf '%T@ %p\n' 2>/dev/null | sort -k 1nr | sed 's/^[^ ]* //' | head -n 1)"
+
 install_pip() {
     curl https://bootstrap.pypa.io/get-pip.py | sudo python
 }
