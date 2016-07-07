@@ -313,8 +313,10 @@ au FileType rust set expandtab
 """"""""""""""""""""""""""""""
 " => Ruby
 """"""""""""""""""""""""""""""
-au FileType ruby set expandtab
+au FileType ruby set noexpandtab
 au FileType ruby set cindent
+au FileType ruby set ts=2
+au FileType ruby set sw=2
 "au FileType ruby set formatoptions+=croq
 " au FileType ruby set cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 "au FileType ruby set textwidth=80
