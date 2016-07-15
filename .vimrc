@@ -22,6 +22,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/syntastic'
 Plug 'vim-scripts/django.vim'
 Plug 'wting/rust.vim'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -301,6 +302,10 @@ au FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,cl
 au FileType python set textwidth=1024
 au FileType python set colorcolumn=+1
 
+""""""""""""""""""""""""""""""
+" => vimwiki
+""""""""""""""""""""""""""""""
+au FileType vimwiki set expandtab
 
 
 """"""""""""""""""""""""""""""
