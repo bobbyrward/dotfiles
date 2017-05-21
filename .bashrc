@@ -35,6 +35,8 @@ else
     fi
 fi
 
+export PATH=$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin
+
 export TERM=xterm-256color
 export EDITOR=vim
 
@@ -42,7 +44,9 @@ export PYTONDONTWRITEBYTECODE=1
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENV_USE_DISTRIBUTE=true
 
-if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
+if [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
+	source $HOME/.local/bin/virtualenvwrapper.sh
+elif [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
 	source /usr/local/bin/virtualenvwrapper.sh
 fi
 
@@ -55,8 +59,6 @@ fi
 
 export PYTHONPATH
 
-
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
 
 source $HOME/.git-prompt.sh
