@@ -40,6 +40,8 @@ set background=dark
 
 set guifont=Consolas:h10:cANSI
 
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/'}]
+
 
 let mapleader = "'"
 let g:mapleader = "'"
