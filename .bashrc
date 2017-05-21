@@ -56,8 +56,6 @@ fi
 export PYTHONPATH
 
 
-export GREP_OPTIONS="--exclude-dir=.svn -I"
-
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
 
