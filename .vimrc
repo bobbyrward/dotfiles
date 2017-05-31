@@ -305,6 +305,21 @@ au FileType python set textwidth=1024
 au FileType python set colorcolumn=+1
 
 """"""""""""""""""""""""""""""
+" => Ruby (devops style guide)
+" """"""""""""""""""""""""""""""
+au FileType ruby set noexpandtab
+au FileType ruby set cindent
+au FileType ruby set formatoptions+=croq
+au FileType ruby set cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+au FileType ruby set textwidth=1024
+au FileType ruby set colorcolumn=+1
+" au FileType ruby set listchars=trail:
+au FileType ruby set nolist
+au FileType ruby set sw=4
+au FileType ruby set ts=4
+
+
+""""""""""""""""""""""""""""""
 " => vimwiki
 """"""""""""""""""""""""""""""
 au FileType vimwiki set expandtab
