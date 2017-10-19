@@ -42,7 +42,7 @@ export EDITOR=vim
 
 export PYTONDONTWRITEBYTECODE=1
 
-if [-d "/var/lib/dpn/virtualenv" ]; then
+if [ -d "/var/lib/dpn/virtualenv" ]; then
 	export WORKON_HOME=/var/lib/dpn/virtualenv
 else
 	export WORKON_HOME=$HOME/.virtualenvs
