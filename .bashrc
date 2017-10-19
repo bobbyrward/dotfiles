@@ -72,3 +72,16 @@ install_pip() {
 install_rust() {
     curl -s https://static.rust-lang.org/rustup.sh | sh
 }
+
+install_dynamo_local() {
+	mkdir -p $HOME/.local/bin
+	mkdir -p $HOME/.local/share/dynamodb_local
+	pushd $HOME/.local/share/dynamodb_local
+	curl -s https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz | tar zxf -
+	cat >$HOME/.local/bin/dynamodb_local <<END
+#!/bin/bash
+cd $HOME/.local/share/dynamodb_local/
+java -jar $HOME/.local/share/dynamodb_local/DynamoDBLocal.jar
+END
+	chmod u+x $HOME/.local/bin/dynamodb_local
+}
