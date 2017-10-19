@@ -41,7 +41,13 @@ export TERM=xterm-256color
 export EDITOR=vim
 
 export PYTONDONTWRITEBYTECODE=1
-export WORKON_HOME=$HOME/.virtualenvs
+
+if [-d "/var/lib/dpn/virtualenv" ]; then
+	export WORKON_HOME=/var/lib/dpn/virtualenv
+else
+	export WORKON_HOME=$HOME/.virtualenvs
+fi
+
 export VIRTUALENV_USE_DISTRIBUTE=true
 
 if [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
