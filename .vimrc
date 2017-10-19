@@ -19,10 +19,16 @@ Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-surround'
 Plug 'wincent/command-t'
 Plug 'chriskempson/base16-vim'
-Plug 'scrooloose/syntastic'
 Plug 'vim-scripts/django.vim'
 Plug 'wting/rust.vim'
 Plug 'vimwiki/vimwiki'
+
+" Use ale if it's vim8
+if has('job')
+    Plug 'w0rp/ale'
+else
+    Plug 'scrooloose/syntastic'
+endif
 
 call plug#end()
 
