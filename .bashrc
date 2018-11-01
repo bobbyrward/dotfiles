@@ -43,17 +43,17 @@ export EDITOR=vim
 export PYTONDONTWRITEBYTECODE=1
 
 if [ -d "/var/lib/dpn/virtualenv" ]; then
-	export WORKON_HOME=/var/lib/dpn/virtualenv
+    export WORKON_HOME=/var/lib/dpn/virtualenv
 else
-	export WORKON_HOME=$HOME/.virtualenvs
+    export WORKON_HOME=$HOME/.virtualenvs
 fi
 
 export VIRTUALENV_USE_DISTRIBUTE=true
-
-if [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
-	source $HOME/.local/bin/virtualenvwrapper.sh
-elif [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
-	source /usr/local/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.7
+ if [ -f "$HOME/.local/bin/virtualenvwrapper_lazy.sh" ]; then
+    source $HOME/.local/bin/virtualenvwrapper_lazy.sh
+elif [ -f "/usr/local/bin/virtualenvwrapper_lazy.sh" ]; then
+    source /usr/local/bin/virtualenvwrapper_lazy.sh
 fi
 
 PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
@@ -65,29 +65,47 @@ fi
 
 export PYTHONPATH
 
-export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
+
+
+export PS1=$'\e[48;5;237;38;5;254m\u@\h \e[48;5;239;38;5;237m\ue0b0\e[38;5;254m \ue0a0 $(__git_ps1) \e[48;5;235;38;5;239m\ue0b0\e[38;5;255m \w \e[38;5;235;49m\ue0b0\n\e[0m\$ \[$(tput sgr0)\]'
 
 source $HOME/.git-prompt.sh
 
 alias sfix="export SSH_AUTH_SOCK=\$(find /tmp/ssh-* -user $USER -name agent\* -printf '%T@ %p\n' 2>/dev/null | sort -k 1nr | sed 's/^[^ ]* //' | head -n 1)"
 
+alias vi=nvim
+alias vim=nvim
+
 install_pip() {
-    curl https://bootstrap.pypa.io/get-pip.py | sudo python
+    curl https://bootstrap.pypa.io/get-pip.py -sSf | sudo python
 }
 
 install_rust() {
-    curl -s https://static.rust-lang.org/rustup.sh | sh
+    curl https://sh.rustup.rs -sSf | sh $*
 }
 
 install_dynamo_local() {
-	mkdir -p $HOME/.local/bin
-	mkdir -p $HOME/.local/share/dynamodb_local
-	pushd $HOME/.local/share/dynamodb_local
-	curl -s https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz | tar zxf -
-	cat >$HOME/.local/bin/dynamodb_local <<END
+    mkdir -p $HOME/.local/bin
+    mkdir -p $HOME/.local/share/dynamodb_local
+    pushd $HOME/.local/share/dynamodb_local
+    curl -s https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz | tar zxf -
+    cat >$HOME/.local/bin/dynamodb_local <<END
 #!/bin/bash
 cd $HOME/.local/share/dynamodb_local/
 java -jar $HOME/.local/share/dynamodb_local/DynamoDBLocal.jar
 END
-	chmod u+x $HOME/.local/bin/dynamodb_local
+    chmod u+x $HOME/.local/bin/dynamodb_local
 }
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+export PATH="/home/null/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
