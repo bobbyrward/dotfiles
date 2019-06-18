@@ -15,3 +15,5 @@
 
 [alias]
 	co = checkout
+	s = status
+	d = diff
