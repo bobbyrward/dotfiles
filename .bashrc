@@ -68,6 +68,8 @@ END
     chmod u+x $HOME/.local/bin/dynamodb_local
 }
 
+export HELM_HOME=$HOME/src/helm
+
 export GOPATH=$HOME/src/go
 export PATH=$PATH:$HOME/.local/go/bin:$HOME/src/go/bin
 
