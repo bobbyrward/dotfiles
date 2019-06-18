@@ -73,6 +73,18 @@ export HELM_HOME=$HOME/src/helm
 export GOPATH=$HOME/src/go
 export PATH=$PATH:$HOME/.local/go/bin:$HOME/src/go/bin
 
+if [ -x $(which kubectl) ]; then
+	source <(kubectl completion bash)
+fi
+
+if [ -x $(which helm) ]; then
+	source <(helm completion bash)
+fi
+
+if [ -x $(which codefresh) ]; then
+	source <(codefresh completion bash)
+fi
+
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
