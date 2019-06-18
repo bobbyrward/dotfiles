@@ -68,6 +68,9 @@ END
     chmod u+x $HOME/.local/bin/dynamodb_local
 }
 
+export GOPATH=$HOME/src/go
+export PATH=$PATH:$HOME/.local/go/bin:$HOME/src/go/bin
+
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
