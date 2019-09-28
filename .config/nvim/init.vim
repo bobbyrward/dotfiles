@@ -10,15 +10,24 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-vinegar'
 Plug 'chriskempson/base16-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'vimwiki/vimwiki'
-Plug 'w0rp/ale'
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+" Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'schickling/vim-bufonly'
 Plug 'vimlab/split-term.vim'
+Plug 'leafgarland/typescript-vim'
 " Plug 'ambv/black'
 call plug#end()
 
@@ -42,6 +51,7 @@ let g:ale_fixers = {
 \           'trim_whitespace',
 \           'black',
 \       ],
+\       'go': ['gofmt'],
 \   }
 
 " \           'add_blank_lines_for_python_control_statements',
@@ -50,10 +60,23 @@ let g:ale_linters = {
 \       'python': [
 \           'flake8',
 \       ],
+\       'go': ['golint'],
 \   }
 
 highlight ALEError ctermfg=00
 highlight ALEError ctermbg=01
+""""""""""""""""""""""""""""""
+" => lsp
+""""""""""""""""""""""""""""""
+let g:LanguageClient_autoStart = 1
+
+let g:LanguageClient_serverCommands = {}
+
+if executable('rustup')
+	let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'stable', 'rls']
+	autocmd FileType rust setlocal omnifunc=LanguageClient#complete
+endif
+
 
 """"""""""""""""""""""""""""""
 " => netrw
@@ -280,6 +303,29 @@ au FileType vimwiki set expandtab
 """"""""""""""""""""""""""""""
 au FileType rust set expandtab
 let g:rustfmt_autosave = 1
+
+""""""""""""""""""""""""""""""
+" => TypeScript
+""""""""""""""""""""""""""""""
+au FileType typescript set expandtab
+au FileType typescript set ts=2
+au FileType typescript set sw=2
+
+""""""""""""""""""""""""""""""
+" => Go
+""""""""""""""""""""""""""""""
+au FileType go set noexpandtab
+au FileType go set ts=4
+au FileType go set sw=4
+au FileType go set nolist
+
+""""""""""""""""""""""""""""""
+" => Make
+""""""""""""""""""""""""""""""
+au FileType make set noexpandtab
+au FileType make set ts=4
+au FileType make set sw=4
+au FileType make set nolist
 
 """"""""""""""""""""""""""""""
 " => Ruby
