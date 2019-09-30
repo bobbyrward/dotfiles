@@ -15,10 +15,9 @@ Plug 'chriskempson/base16-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'vimwiki/vimwiki'
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Plug 'w0rp/ale'
 Plug 'dense-analysis/ale'
@@ -65,18 +64,6 @@ let g:ale_linters = {
 
 highlight ALEError ctermfg=00
 highlight ALEError ctermbg=01
-""""""""""""""""""""""""""""""
-" => lsp
-""""""""""""""""""""""""""""""
-let g:LanguageClient_autoStart = 1
-
-let g:LanguageClient_serverCommands = {}
-
-if executable('rustup')
-	let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'stable', 'rls']
-	autocmd FileType rust setlocal omnifunc=LanguageClient#complete
-endif
-
 
 """"""""""""""""""""""""""""""
 " => netrw
@@ -121,6 +108,7 @@ nmap <leader><tab> :bn<cr>
 nmap <leader>n :next<cr>
 nmap <leader>cn :cn<cr>
 nmap <leader>cp :cp<cr>
+nmap <leader>cc :cclose<cr>
 nmap <leader>cd :cd %:p:h<cr>
 
 nmap <leader>ln :lN<cr>
@@ -132,7 +120,6 @@ nmap <leader>T :10Term<cr>
 " fzf.vim
 nmap <leader>f :Files<cr>
 nmap <leader>B :Buffers<cr>
-nmap <leader>g :GFiles<cr>
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -211,6 +198,9 @@ set hlsearch
 set listchars=tab:≫-,trail:→
 set list
 
+" Save when calling :make
+set autowrite
+
 """"""""""""""""""""""""""""""
 " => Visual
 """"""""""""""""""""""""""""""
@@ -273,6 +263,9 @@ set wrap
 """"""""""""""""""""""""""""""
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.egg-info$', '__pycache__']
 
+" => deoplete
+let g:deoplete#enable_at_startup = 1
+
 
 """"""""""""""""""""""""""""""
 " => YAML
@@ -318,6 +311,21 @@ au FileType go set noexpandtab
 au FileType go set ts=4
 au FileType go set sw=4
 au FileType go set nolist
+
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+" let g:go_auto_sameids = 1
+
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+
+nmap <leader>gb :GoBuild<cr>
+nmap <leader>gt :GoTest<cr>
 
 """"""""""""""""""""""""""""""
 " => Make
