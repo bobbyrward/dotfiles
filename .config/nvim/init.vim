@@ -3,7 +3,10 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     execute '!curl -fLo ~/.local/share/nvim/site/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
 
+let g:python3_host_prog = '/usr/bin/python3'
+
 call plug#begin('~/.local/share/nvim/plugged')
+            println!("forwards[0] 0 velocity @ {}: {:?}", i, forwards[0].position);
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -30,6 +33,7 @@ Plug 'leafgarland/typescript-vim'
 " Plug 'ambv/black'
 call plug#end()
 
+set hidden
 set encoding=utf8
 
 if filereadable(expand("~/.vimrc_background"))
@@ -38,10 +42,15 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+
+
+
 """"""""""""""""""""""""""""""
 " => ale
 """"""""""""""""""""""""""""""
 let g:ale_fix_on_save = 1
+let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
 \       '*': [
 \       ],
@@ -51,6 +60,7 @@ let g:ale_fixers = {
 \           'black',
 \       ],
 \       'go': ['gofmt'],
+\       'rust': ['rustfmt'],
 \   }
 
 " \           'add_blank_lines_for_python_control_statements',
@@ -64,6 +74,10 @@ let g:ale_linters = {
 
 highlight ALEError ctermfg=00
 highlight ALEError ctermbg=01
+
+let g:ale_python_black_executable='/home/null/.local/bin/black'
+let g:ale_python_flake8_executable='/home/null/.local/bin/flake8'
+let g:ale_rust_cargo_use_clippy=1
 
 """"""""""""""""""""""""""""""
 " => netrw
@@ -265,6 +279,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '\.egg-info$', '__pycache__']
 
 " => deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources = {'rust': ['ale']}
 
 
 """"""""""""""""""""""""""""""
@@ -321,6 +336,8 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 " let g:go_auto_sameids = 1
+
+let g:go_fmt_command = "goimports"
 
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 

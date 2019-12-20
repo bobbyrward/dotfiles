@@ -43,8 +43,9 @@ alias vim=nvim
 export PATH=$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin
 export TERM=xterm-256color
 
-export PS1=$'\n\[\e[48;5;237;38;5;1m\]\u@\h \[\e[48;5;239;38;5;237m\]\ue0b0\[\e[38;5;6m\] \ue0a0 $(__git_ps1) \[\e[48;5;235;38;5;239m\]\ue0b0\[\e[38;5;3m\] () \w \[\e[38;5;235;49m\]\ue0b0\n\[\e[0m\]\$ \[$(tput sgr0)\]'
+export PS1=$'\n\[\e[48;5;237;38;5;1m\]\u@\h \[\e[48;5;239;38;5;237m\]\ue0b0\[\e[38;5;6m\] \ue0a0 $(__git_ps1) \[\e[48;5;235;38;5;239m\]\ue0b0\[\e[38;5;3m\] $(__venv_ps1) \w \[\e[38;5;235;49m\]\ue0b0\n\[\e[0m\]\$ \[$(tput sgr0)\]'
 source $HOME/.git-prompt.sh
+source $HOME/.bashrc_python
 
 alias sfix="export SSH_AUTH_SOCK=\$(find /tmp/ssh-* -user $USER -name agent\* -printf '%T@ %p\n' 2>/dev/null | sort -k 1nr | sed 's/^[^ ]* //' | head -n 1)"
 
@@ -99,4 +100,7 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-source $HOME/.bashrc_python
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

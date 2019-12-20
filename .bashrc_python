@@ -16,6 +16,19 @@ fi
 
 export PYTHONPATH
 
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+__venv_ps1 ()
+{
+#    if [ "x(.venv) " != x ] ; then
+#        PS1="(.venv) ${PS1:-}"
+#    else
+	if [ "x$VIRTUAL_ENV" != "x" ]; then
+		echo "("$(basename "$VIRTUAL_ENV")")"
+	else
+		echo
+	fi
+}
 
 # export PATH="/home/null/.pyenv/bin:$PATH"
 # export PYENV_VIRTUALENV_DISABLE_PROMPT=1
