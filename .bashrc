@@ -17,14 +17,7 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+alias ls='exa -l'
 
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
@@ -41,11 +34,10 @@ alias vi=nvim
 alias vim=nvim
 
 export PATH=$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin
-export TERM=xterm-256color
-
-export PS1=$'\n\n\[\e[48;5;237;38;5;1m\]\u@\h \[\e[48;5;239;38;5;237m\]\ue0b0\[\e[38;5;6m\] \ue0a0 $(__git_ps1) \[\e[48;5;235;38;5;239m\]\ue0b0\[\e[38;5;3m\] $(__venv_ps1) \w \[\e[38;5;235;49m\]\ue0b0\n\[\e[0m\]\$ \[$(tput sgr0)\]'
 source $HOME/.git-prompt.sh
 source $HOME/.bashrc_python
+source ~/.prompt.sh
+
 
 alias sfix="export SSH_AUTH_SOCK=\$(find /tmp/ssh-* -user $USER -name agent\* -printf '%T@ %p\n' 2>/dev/null | sort -k 1nr | sed 's/^[^ ]* //' | head -n 1)"
 
@@ -75,32 +67,21 @@ export HELM_HOME=$HOME/src/helm
 export GOPATH=$HOME/src/go
 export PATH=$PATH:$HOME/.local/go/bin:$HOME/src/go/bin
 
-# if [ -x $(which kubectl) ]; then
-# 	source <(kubectl completion bash)
-# fi
+if [ -x $(which kubectl) ]; then
+	source <(kubectl completion bash)
+fi
 
-# if [ -x $(which helm) ]; then
-# 	source <(helm completion bash)
-# fi
+if [ -x $(which helm) ]; then
+	source <(helm completion bash)
+fi
 
-# if [ -x $(which codefresh) ]; then
-# 	source <(codefresh completion bash)
-# fi
-
-# if [ -x $(which argo) ]; then
-# 	source <(argo completion bash)
-# fi
+if [ -x $(which argo) ]; then
+	source <(argo completion bash)
+fi
 
 if [ -f $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
 fi
-
-
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

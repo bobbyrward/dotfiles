@@ -6,77 +6,119 @@ endif
 let g:python3_host_prog = '/usr/bin/python3'
 
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+Plug 'ryanoasis/vim-devicons'
+Plug 'liuchengxu/vista.vim'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-vinegar'
-Plug 'chriskempson/base16-vim'
-Plug 'rust-lang/rust.vim'
-Plug 'vimwiki/vimwiki'
+Plug 'arcticicestudio/nord-vim'
 
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-" Plug 'w0rp/ale'
-Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'rust-lang/rust.vim'
+
 Plug 'schickling/vim-bufonly'
 Plug 'vimlab/split-term.vim'
 Plug 'leafgarland/typescript-vim'
-" Plug 'ambv/black'
 call plug#end()
 
 set hidden
 set encoding=utf8
 
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+colorscheme nord
+let g:nord_cursor_line_number_background = 1
+let g:nord_underline = 1
+
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-hidden'
+
+let mapleader = "'"
+let g:mapleader = "'"
+
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
 
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+" Vista
+"
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista#renderer#enable_icon = 1
+
+let g:vista_fzf_preview = ['right:50%']
 
 
 
-""""""""""""""""""""""""""""""
-" => ale
-""""""""""""""""""""""""""""""
-let g:ale_fix_on_save = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ale_fixers = {
-\       '*': [
-\       ],
-\       'python': [
-\           'remove_trailing_lines',
-\           'trim_whitespace',
-\           'black',
-\       ],
-\       'go': ['gofmt'],
-\       'rust': ['rustfmt'],
-\   }
+" COC
+"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" \           'add_blank_lines_for_python_control_statements',
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-let g:ale_linters = {
-\       'python': [
-\           'flake8',
-\       ],
-\       'go': ['golint'],
-\   }
+nmap <leader>n <Plug>(coc-diagnostic-next)
+nmap <leader>p <Plug>(coc-diagnostic-prev)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
-highlight ALEError ctermfg=00
-highlight ALEError ctermbg=01
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
-let g:ale_python_black_executable='/home/null/.local/bin/black'
-let g:ale_python_flake8_executable='/home/null/.local/bin/flake8'
-let g:ale_rust_cargo_use_clippy=1
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+hi CocHintSign ctermfg=8
+
+
+" Using CocList
+" Show all diagnostics
+nnoremap <leader>da  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <leader>de  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <leader>dc  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <leader>do  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <leader>ds  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <leader>dj  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <leader>dk  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <leader>dp  :<C-u>CocListResume<CR>
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+
+xmap <silent> <leader>c :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>c :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
 
 """"""""""""""""""""""""""""""
 " => netrw
@@ -87,7 +129,7 @@ let g:netrw_banner = 0
 """"""""""""""""""""""""""""""
 " => AirLine
 """"""""""""""""""""""""""""""
-let g:airline_theme='minimalist'
+" let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
@@ -99,9 +141,6 @@ let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/'}]
 """"""""""""""""""""""""""""""
 " => Remapped keys
 """"""""""""""""""""""""""""""
-let mapleader = "'"
-let g:mapleader = "'"
-
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 nmap <leader>Q :qall<cr>
@@ -118,7 +157,6 @@ nmap <leader>bd :bd<cr>
 nmap <leader>` :bp<cr>
 nmap <leader><tab> :bn<cr>
 
-nmap <leader>n :next<cr>
 nmap <leader>cn :cn<cr>
 nmap <leader>cp :cp<cr>
 nmap <leader>cc :cclose<cr>
@@ -131,7 +169,72 @@ nmap <leader>lp :lp<cr>
 nmap <leader>T :10Term<cr>
 
 " fzf.vim
-nmap <leader>f :Files<cr>
+function! CreateCenteredFloatingWindow()
+    let width = min([&columns - 4, max([80, &columns - 20])])
+    let height = min([&lines - 4, max([20, &lines - 10])])
+    let top = ((&lines - height) / 2) - 1
+    let left = (&columns - width) / 2
+    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
+
+    let top = "╭" . repeat("─", width - 2) . "╮"
+    let mid = "│" . repeat(" ", width - 2) . "│"
+    let bot = "╰" . repeat("─", width - 2) . "╯"
+    let lines = [top] + repeat([mid], height - 2) + [bot]
+    let s:buf = nvim_create_buf(v:false, v:true)
+    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
+    call nvim_open_win(s:buf, v:true, opts)
+    set winhl=Normal:Floating
+    let opts.row += 1
+    let opts.height -= 2
+    let opts.col += 2
+    let opts.width -= 4
+    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    au BufWipeout <buffer> exe 'bw '.s:buf
+endfunction
+
+
+let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+
+
+" Files + devicons + floating fzf
+function! Fzf_dev()
+  let l:fzf_files_options = '--preview "bat --line-range :'.&lines.' --theme="OneHalfDark" --style=numbers,changes --color always {2..-1}"'
+  function! s:files()
+    let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+    return s:prepend_icon(l:files)
+  endfunction
+
+  function! s:prepend_icon(candidates)
+    let l:result = []
+    for l:candidate in a:candidates
+      let l:filename = fnamemodify(l:candidate, ':p:t')
+      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+      call add(l:result, printf('%s %s', l:icon, l:candidate))
+    endfor
+
+    return l:result
+  endfunction
+
+  function! s:edit_file(item)
+    let l:pos = stridx(a:item, ' ')
+    let l:file_path = a:item[pos+1:-1]
+    execute 'silent e' l:file_path
+  endfunction
+
+  call fzf#run({
+        \ 'source': <sid>files(),
+        \ 'sink':   function('s:edit_file'),
+        \ 'options': '-m --reverse ' . l:fzf_files_options,
+        \ 'down':    '40%',
+        \ 'window': 'call CreateCenteredFloatingWindow()'})
+
+endfunction
+
+
+
+
+" nmap <leader>f :Files<cr>
+nmap <silent> <leader>f :call Fzf_dev()<CR>
 nmap <leader>B :Buffers<cr>
 
 " Insert mode completion
@@ -172,7 +275,7 @@ set so=7
 set ruler
 
 "Show line number
-set nu
+set nu rnu
 
 "Do not redraw, when running macros.. lazyredraw
 set lz
@@ -272,16 +375,6 @@ set wrap
 
 
 """"""""""""""""""""""""""""""
-" => NERDTree
-""""""""""""""""""""""""""""""
-let NERDTreeIgnore=['\.pyc$', '\~$', '\.egg-info$', '__pycache__']
-
-" => deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources = {'rust': ['ale']}
-
-
-""""""""""""""""""""""""""""""
 " => YAML
 """"""""""""""""""""""""""""""
 au FileType yaml set expandtab
@@ -298,7 +391,6 @@ au FileType python set formatoptions+=croq
 au FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au FileType python set textwidth=1024
 au FileType python set colorcolumn=+1
-" let g:syntastic_python_checkers = ['flake8']
 
 """"""""""""""""""""""""""""""
 " => vimwiki
@@ -309,7 +401,6 @@ au FileType vimwiki set expandtab
 " => Rust
 """"""""""""""""""""""""""""""
 au FileType rust set expandtab
-let g:rustfmt_autosave = 1
 
 """"""""""""""""""""""""""""""
 " => TypeScript
@@ -338,8 +429,6 @@ let g:go_highlight_types = 1
 
 let g:go_fmt_command = "goimports"
 
-call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
-
 nmap <leader>gb :GoBuild<cr>
 nmap <leader>gt :GoTest<cr>
 
@@ -358,7 +447,3 @@ au FileType ruby set noexpandtab
 au FileType ruby set cindent
 au FileType ruby set ts=2
 au FileType ruby set sw=2
-"au FileType ruby set formatoptions+=croq
-"au FileType ruby set cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-"au FileType ruby set textwidth=80
-"au FileType ruby set colorcolumn=+1

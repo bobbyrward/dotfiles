@@ -1,4 +1,3 @@
-
 export PYTONDONTWRITEBYTECODE=1
 
 if [ -d "/var/lib/dpn/virtualenv" ]; then
@@ -7,27 +6,15 @@ else
     export WORKON_HOME=$HOME/.virtualenvs
 fi
 
-PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
-
-if [ -d "/var/www/dpn_webservices" ]; then
-    PYTHONPATH=/var/www/dpn_webservices:$PYTHONPATH
-    export DJANGO_SETTINGS_MODULE=multidb_piston.settings
-fi
-
 export PYTHONPATH
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 __venv_ps1 ()
 {
-#    if [ "x(.venv) " != x ] ; then
-#        PS1="(.venv) ${PS1:-}"
-#    else
-	if [ "x$VIRTUAL_ENV" != "x" ]; then
-		echo "("$(basename "$VIRTUAL_ENV")")"
-	else
-		echo
-	fi
+    if [ "x$VIRTUAL_ENV" != "x" ]; then
+        echo $(basename "$VIRTUAL_ENV")
+    fi
 }
 
 # export PATH="/home/null/.pyenv/bin:$PATH"
