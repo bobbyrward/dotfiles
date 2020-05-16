@@ -46,7 +46,7 @@ install_pip() {
 }
 
 install_rust() {
-    curl https://sh.rustup.rs -sSf | sh $*
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 install_dynamo_local() {
