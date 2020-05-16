@@ -88,7 +88,7 @@ compile_prompt () {
   # > Username
   # Format:
   #   (bracket open)(username)(bracket close)(splitbar)
-  PS1+="[${c_blue}\u${c_gray}]"
+  PS1+="[${c_blue}\u${c_cyan}@${c_blue}\h${c_gray}]"
   PS1+="$SPLITBAR"
 
   # > Jobs
