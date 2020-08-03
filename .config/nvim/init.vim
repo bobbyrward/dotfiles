@@ -28,6 +28,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'vimlab/split-term.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'towolf/vim-helm'
 call plug#end()
 
 set hidden
@@ -35,9 +36,10 @@ set encoding=utf8
 
 colorscheme nord
 let g:nord_cursor_line_number_background = 1
-let g:nord_underline = 1
 
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-hidden'
+" let $FZF_DEFAULT_COMMAND = 'rg --files --no-hidden'
+" let $FZF_DEFAULT_COMMAND='fd --type f'
+let $FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 let mapleader = "'"
 let g:mapleader = "'"
@@ -156,6 +158,7 @@ nmap <leader>tp :Tput<cr>
 nmap <leader>bd :bd<cr>
 nmap <leader>` :bp<cr>
 nmap <leader><tab> :bn<cr>
+nmap <leader>bo :BufOnly<cr>
 
 nmap <leader>cn :cn<cr>
 nmap <leader>cp :cp<cr>
@@ -403,8 +406,19 @@ au FileType vimwiki set expandtab
 au FileType rust set expandtab
 
 """"""""""""""""""""""""""""""
+" => json
+""""""""""""""""""""""""""""""
+au FileType json set expandtab
+au FileType json set ts=2
+au FileType json set sw=2
+
+""""""""""""""""""""""""""""""
 " => TypeScript
 """"""""""""""""""""""""""""""
+au FileType javascript set expandtab
+au FileType javascript set ts=2
+au FileType javascript set sw=2
+
 au FileType typescript set expandtab
 au FileType typescript set ts=2
 au FileType typescript set sw=2

@@ -29,7 +29,7 @@ else
     fi
 fi
 
-export EDITOR=vim
+export EDITOR=nvim
 alias vi=nvim
 alias vim=nvim
 
@@ -38,6 +38,9 @@ source $HOME/.git-prompt.sh
 source $HOME/.bashrc_python
 source ~/.prompt.sh
 
+tmux-cwd() {
+    tmux command-prompt -I $PWD -p "New working directory: " "attach -c %1"
+}
 
 alias sfix="export SSH_AUTH_SOCK=\$(find /tmp/ssh-* -user $USER -name agent\* -printf '%T@ %p\n' 2>/dev/null | sort -k 1nr | sed 's/^[^ ]* //' | head -n 1)"
 
@@ -67,15 +70,15 @@ export HELM_HOME=$HOME/src/helm
 export GOPATH=$HOME/src/go
 export PATH=$PATH:$HOME/.local/go/bin:$HOME/src/go/bin
 
-if [ -x $(which kubectl) ]; then
+if [ $(command -v kubectl) ]; then
 	source <(kubectl completion bash)
 fi
 
-if [ -x $(which helm) ]; then
+if [ $(command -v helm) ]; then
 	source <(helm completion bash)
 fi
 
-if [ -x $(which argo) ]; then
+if [ $(command -v argo) ]; then
 	source <(argo completion bash)
 fi
 

@@ -34,26 +34,27 @@ window:
 # Some applications, like Emacs, rely on knowing about the width of a tab.
 # To prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
-tabspaces: 4
 
 # Font configuration
 font:
   # Normal (roman) font face
   normal:
     # family: Hack
-    family: "FuraCode Nerd Font"
-    # family: Fira Mono for Powerline
+    #family: "FuraCode Nerd Font"
+    family: "Fira Mono for Powerline"
+    style: "Medium"
     #
-#  bold:
+  bold:
 #    family: "FuraCode Nerd Font"
-#    style: "Bold"
+#    family: "Hack"
+    style: "Bold"
 
-  italic:
-    family: "Hack"
-    style: "Italic"
+#  italic:
+#    family: "Hack"
+#    style: "Italic"
 
   # Point size
-  size: 10.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
