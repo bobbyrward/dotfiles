@@ -61,6 +61,16 @@ let g:vista_fzf_preview = ['right:50%']
 
 " COC
 "
+let g:coc_global_extensions = [
+  \'coc-json',
+  \'coc-yaml',
+  \'coc-actions',
+  \'coc-tsserver',
+  \'coc-rust-analyzer',
+  \'coc-python',
+  \'coc-marketplace',
+  \]
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -461,3 +471,14 @@ au FileType ruby set noexpandtab
 au FileType ruby set cindent
 au FileType ruby set ts=2
 au FileType ruby set sw=2
+
+""""""""""""""""""""""""""""""
+" => terraform
+""""""""""""""""""""""""""""""
+au FileType tf set expandtab
+au FileType tf set ts=2
+au FileType tf set sw=2
+
+au Filetype markdown set expandtab
+au Filetype markdown set ts=2
+au Filetype markdown set sw=2
