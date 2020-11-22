@@ -91,6 +91,10 @@ if [ -f $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
 fi
 
+if [ -d $HOME/.linuxbrew ]; then
+    eval $($HOME/.linuxbrew/bin/brew shellenv)
+fi
+
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
