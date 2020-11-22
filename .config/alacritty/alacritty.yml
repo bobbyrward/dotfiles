@@ -135,7 +135,7 @@ colors: *nord
 
 
 # Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
+window.dynamic_title: true
 
 
 # Live config reload (changes require restart)
