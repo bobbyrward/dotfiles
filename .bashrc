@@ -65,6 +65,11 @@ END
     chmod u+x $HOME/.local/bin/dynamodb_local
 }
 
+install_neovim() {
+    curl -L https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -o $HOME/.local/bin/nvim
+    chmod u+x $HOME/.local/bin/nvim
+}
+
 export HELM_HOME=$HOME/src/helm
 
 export GOPATH=$HOME/src/go
