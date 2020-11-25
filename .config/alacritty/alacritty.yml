@@ -40,8 +40,10 @@ font:
   # Normal (roman) font face
   normal:
     # family: Hack
-    #family: "FuraCode Nerd Font"
-    family: "Fira Mono for Powerline"
+    family: "FuraCode Nerd Font"
+    # family: "Fira Mono for Powerline"
+    # family: "Fira Code Regular Nerd Font Complete"
+    # family: "JetBrainsMono Nerd Font"
     style: "Medium"
     #
   bold:
