@@ -69,6 +69,7 @@ let g:coc_global_extensions = [
   \'coc-rust-analyzer',
   \'coc-python',
   \'coc-marketplace',
+  \'coc-go',
   \]
 
 inoremap <silent><expr> <TAB>
