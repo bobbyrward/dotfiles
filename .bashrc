@@ -87,6 +87,10 @@ if [ $(command -v argo) ]; then
 	source <(argo completion bash)
 fi
 
+if [ $(command -v pyenv) ]; then
+	eval "$(pyenv init -)"
+fi
+
 if [ -f $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
 fi
