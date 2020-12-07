@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+TryExec=/home/bward/.local/bin/ytmd
+Exec=/home/bward/.local/bin/ytmd
+Icon=/home/bward/.local/share/pixmaps/ytmd.png
+Terminal=false
+Categories=System;TerminalEmulator;
+
+Name=YouTube Music Desktop
+GenericName=Music Player
+Comment=A Desktop App for YouTube Music
+StartupWMClass=youtube-music-desktop-app
