@@ -113,10 +113,20 @@ compile_prompt () {
   #   (bracket open)(working directory)(bracket close)(newline)
   PS1+="[${c_blue}\w${c_gray}]"
 
-  if [ "x$(__venv_ps1)" != "x" ]; then
+  if [ $(command -v pyenv) ]; then
     PS1+="$SPLITBAR"
-    PS1+="[${c_blue}$(__venv_ps1)${c_gray}]"
+    PS1+="[${c_blue}$(pyenv version-name)${c_gray}]"
   fi
+
+  if [ $(command -v kubectl) ]; then
+    PS1+="$SPLITBAR"
+	PS1+="[${c_blue}k8s: $(kubectl config current-context)${c_gray}]"
+  fi
+
+#  if [ "x$(__venv_ps1)" != "x" ]; then
+#    PS1+="$SPLITBAR"
+#    PS1+="[${c_blue}$(__venv_ps1)${c_gray}]"
+#  fi
 
   PS1+="\n"
 
