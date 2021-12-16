@@ -2,6 +2,12 @@
 
 [ -z "$PS1" ] && return
 
+
+# DO THIS WAY UP TOP SO IT CAN BE OVERWRITTEN
+if [ -f $HOME/.linuxify ]; then
+	. "$HOME/.linuxify"
+fi
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -89,6 +95,7 @@ fi
 
 if [ $(command -v pyenv) ]; then
 	eval "$(pyenv init -)"
+	if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 fi
 
 if [ -f $HOME/.cargo/env ]; then
@@ -110,3 +117,8 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f $HOME/.local_bashrc ]; then
     source $HOME/.local_bashrc
 fi
+
+. "$HOME/.cargo/env"
+export DOCKER_CLIENT_TIMEOUT=120
+export COMPOSE_HTTP_TIMEOUT=120
+

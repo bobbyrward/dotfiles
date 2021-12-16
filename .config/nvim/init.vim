@@ -29,6 +29,9 @@ Plug 'schickling/vim-bufonly'
 Plug 'vimlab/split-term.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'towolf/vim-helm'
+
+Plug 'lervag/wiki.vim'
+
 call plug#end()
 
 set hidden
@@ -67,7 +70,7 @@ let g:coc_global_extensions = [
   \'coc-actions',
   \'coc-tsserver',
   \'coc-rust-analyzer',
-  \'coc-python',
+  \'coc-pyright',
   \'coc-marketplace',
   \'coc-go',
   \]
@@ -147,9 +150,12 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 """"""""""""""""""""""""""""""
-" => VimWiki
+" => wiki.vim
 """"""""""""""""""""""""""""""
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/'}]
+let g:wiki_root = "~/Documents/notes"
+let g:wiki_filetypes = ['md']
+let g:wiki_link_extension = '.md'
+nmap <leader>wg <Plug>(wiki-fzf-pages)
 
 """"""""""""""""""""""""""""""
 " => Remapped keys
@@ -257,6 +263,7 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 function! NMapToggle(key, opt)
