@@ -2,10 +2,17 @@
 
 [ -z "$PS1" ] && return
 
+if [ -d $HOME/.linuxbrew ]; then
+    eval $($HOME/.linuxbrew/bin/brew shellenv)
+else
+    if [ -f /opt/homebrew/bin/brew ]; then
+        eval $(/opt/homebrew/bin/brew shellenv)
+    fi
 
+fi
 # DO THIS WAY UP TOP SO IT CAN BE OVERWRITTEN
 if [ -f $HOME/.linuxify ]; then
-	. "$HOME/.linuxify"
+    . "$HOME/.linuxify"
 fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -100,10 +107,6 @@ fi
 
 if [ -f $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
-fi
-
-if [ -d $HOME/.linuxbrew ]; then
-    eval $($HOME/.linuxbrew/bin/brew shellenv)
 fi
 
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash

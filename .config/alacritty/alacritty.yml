@@ -7,6 +7,8 @@ env:
   TERM: xterm-256color
 
 window:
+  opacity: 0.95
+
   # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:
@@ -40,11 +42,11 @@ font:
   # Normal (roman) font face
   normal:
     # family: Hack
-    family: "FuraCode Nerd Font"
+    family: "FiraCode Nerd Font"
     # family: "Fira Mono for Powerline"
     # family: "Fira Code Regular Nerd Font Complete"
     # family: "JetBrainsMono Nerd Font"
-    style: "Medium"
+    style: "Regular"
     #
   bold:
 #    family: "FuraCode Nerd Font"
@@ -134,7 +136,6 @@ schemes:
       white:   '0xffffff'
 
 colors: *nord
-background_opacity: 0.95
 
 
 # Allow terminal applications to change Alacritty's window title.
