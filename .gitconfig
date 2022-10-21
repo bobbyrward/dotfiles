@@ -9,6 +9,7 @@
 
 [push]
 	default = simple
+	autoSetupRemote = true
 
 [color]
 	ui = auto
@@ -18,7 +19,13 @@
 	s = status
 	d = diff
 	b = branch
+	dc = diff --cached
   amend = commit --amend --no-edit
   unstage = reset HEAD --
   last = log -1 HEAD
   force-push = push origin +HEAD
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
