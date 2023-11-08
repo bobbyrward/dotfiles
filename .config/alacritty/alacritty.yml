@@ -42,7 +42,7 @@ font:
   # Normal (roman) font face
   normal:
     # family: Hack
-    family: "FiraCode Nerd Font"
+    family: "CaskaydiaCove Nerd Font"
     # family: "Fira Mono for Powerline"
     # family: "Fira Code Regular Nerd Font Complete"
     # family: "JetBrainsMono Nerd Font"
@@ -58,7 +58,7 @@ font:
 #    style: "Italic"
 
   # Point size
-  size: 14.0
+  size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
