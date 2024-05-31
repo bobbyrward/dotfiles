@@ -12,3 +12,5 @@ o.tabstop = 2
 o.shiftwidth = 2
 o.termguicolors = true
 o.wrap = true
+
+-- vim.g.python3_host_prog = "/Users/bward/.pyenv/versions/neovim/bin/python"
