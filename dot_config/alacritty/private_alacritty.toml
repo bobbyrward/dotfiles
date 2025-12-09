@@ -1,0 +1,113 @@
+# "window.dynamic_title" = true
+
+[colors.bright]
+black = "0x4C566A"
+blue = "0x81A1C1"
+cyan = "0x8FBCBB"
+green = "0xA3BE8C"
+magenta = "0xB48EAD"
+red = "0xBF616A"
+white = "0xECEFF4"
+yellow = "0xEBCB8B"
+
+[colors.cursor]
+cursor = "0xD8DEE9"
+text = "0x2E3440"
+
+[colors.normal]
+black = "0x3B4252"
+blue = "0x81A1C1"
+cyan = "0x88C0D0"
+green = "0xA3BE8C"
+magenta = "0xB48EAD"
+red = "0xBF616A"
+white = "0xE5E9F0"
+yellow = "0xEBCB8B"
+
+[colors.primary]
+background = "0x2E3440"
+foreground = "0xD8DEE9"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+# Vsize = 14.0
+size = 24
+
+[font.bold]
+style = "Bold"
+
+[font.normal]
+family = "CaskaydiaCove Nerd Font"
+style = "Regular"
+
+[mouse]
+hide_when_typing = true
+
+# [schemes.cobalt2.bright]
+# black = "0x555555"
+# blue = "0x5555ff"
+# cyan = "0x6ae3fa"
+# green = "0x3bd01d"
+# magenta = "0xff55ff"
+# red = "0xf40e17"
+# white = "0xffffff"
+# yellow = "0xedc809"
+#
+# [schemes.cobalt2.cursor]
+# cursor = "0xf0cc09"
+# text = "0xfefff2"
+#
+# [schemes.cobalt2.normal]
+# black = "0x000000"
+# blue = "0x1460d2"
+# cyan = "0x00bbbb"
+# green = "0x38de21"
+# magenta = "0xff005d"
+# red = "0xff0000"
+# white = "0xbbbbbb"
+# yellow = "0xffe50a"
+#
+# [schemes.cobalt2.primary]
+# background = "0x132738"
+# foreground = "0xffffff"
+#
+# [schemes.cobalt2.selection]
+# background = "0x18354f"
+# text = "0xb5b5b5"
+#
+# [schemes.nord.bright]
+# black = "0x4C566A"
+# blue = "0x81A1C1"
+# cyan = "0x8FBCBB"
+# green = "0xA3BE8C"
+# magenta = "0xB48EAD"
+# red = "0xBF616A"
+# white = "0xECEFF4"
+# yellow = "0xEBCB8B"
+#
+# [schemes.nord.cursor]
+# cursor = "0xD8DEE9"
+# text = "0x2E3440"
+#
+# [schemes.nord.normal]
+# black = "0x3B4252"
+# blue = "0x81A1C1"
+# cyan = "0x88C0D0"
+# green = "0xA3BE8C"
+# magenta = "0xB48EAD"
+# red = "0xBF616A"
+# white = "0xE5E9F0"
+# yellow = "0xEBCB8B"
+#
+# [schemes.nord.primary]
+# background = "0x2E3440"
+# foreground = "0xD8DEE9"
+#
+[window]
+opacity = 0.95
+startup_mode = "Maximized"
+
+[general]
+live_config_reload = true
