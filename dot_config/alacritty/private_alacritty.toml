@@ -33,7 +33,7 @@ TERM = "xterm-256color"
 
 [font]
 # Vsize = 14.0
-size = 24
+size = 12
 
 [font.bold]
 style = "Bold"
