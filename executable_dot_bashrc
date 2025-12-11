@@ -38,7 +38,6 @@ alias vim=nvim
 
 export PATH=$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin
 source $HOME/.git-prompt.sh
-source $HOME/.bashrc_python
 source ~/.prompt.sh
 
 tmux-cwd() {
