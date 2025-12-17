@@ -1,5 +1,3 @@
-# "window.dynamic_title" = true
-
 [colors.bright]
 black = "0x4C566A"
 blue = "0x81A1C1"
@@ -106,8 +104,9 @@ hide_when_typing = true
 # foreground = "0xD8DEE9"
 #
 [window]
-opacity = 0.95
+opacity = 0.85
 startup_mode = "Maximized"
+decorations = "None"
 
 [general]
 live_config_reload = true
