@@ -105,7 +105,6 @@ hide_when_typing = true
 #
 [window]
 opacity = 0.85
-startup_mode = "Maximized"
 decorations = "None"
 
 [general]
